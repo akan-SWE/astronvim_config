@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "monokai-pro-spectrum",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -82,4 +82,112 @@ return {
     --   },
     -- }
   end,
+
+  -- set up UI icons
+  -- icons = {
+  --   ActiveLSP = "",
+  --   ActiveTS = " ",
+  --   BufferClose = "",
+  --   DapBreakpoint = "",
+  --   DapBreakpointCondition = "",
+  --   DapBreakpointRejected = "",
+  --   DapLogPoint = "",
+  --   DapStopped = "",
+  --   DefaultFile = "",
+  --   Diagnostic = "",
+  --   DiagnosticError = "",
+  --   DiagnosticHint = "",
+  --   DiagnosticInfo = "",
+  --   DiagnosticWarn = "",
+  --   Ellipsis = "",
+  --   FileModified = "",
+  --   FileReadOnly = "",
+  --   FoldClosed = "",
+  --   FoldOpened = "",
+  --   FolderClosed = "",
+  --   FolderEmpty = "",
+  --   FolderOpen = "",
+  --   Git = "",
+  --   GitAdd = "",
+  --   GitBranch = "",
+  --   GitChange = "",
+  --   GitConflict = "",
+  --   GitDelete = "",
+  --   GitIgnored = "",
+  --   GitRenamed = "",
+  --   GitStaged = "",
+  --   GitUnstaged = "",
+  --   GitUntracked = "",
+  --   LSPLoaded = "",
+  --   LSPLoading1 = "",
+  --   LSPLoading2 = "",
+  --   LSPLoading3 = "",
+  --   MacroRecording = "",
+  --   Paste = "",
+  --   Search = "",
+  --   Selected = "",
+  --   TabClose = "",
+  -- },
+   plugins = {
+    {
+      "onsails/lspkind.nvim",
+      opts = function(_, opts)
+        -- use codicons preset
+        opts.preset = "codicons"
+        -- set some missing symbol types
+        opts.symbol_map = {
+          Array = "",
+          Boolean = "",
+          Key = "",
+          Namespace = "",
+          Null = "",
+          Number = "",
+          Object = "",
+          Package = "",
+          String = "",
+        }
+        return opts
+       end,
+    },
+  },
+
+--   -- Setting up adapter 
+--   local dap = require('dap')
+--   dap.adapters.lldb = {
+--     type = 'executable',
+--     command = '/usr/bin/lldb', -- adjust as needed, must be absolute path
+--     name = 'lldb'
+--   }
+--
+-- local dap = require('dap')
+-- dap.configurations.cpp = {
+--   {
+--     name = 'Launch',
+--     type = 'lldb',
+--     request = 'launch',
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     cwd = '${workspaceFolder}',
+--     stopOnEntry = false,
+--     args = {},
+--
+--     -- 💀
+--     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+--     --
+--     --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+--     --
+--     -- Otherwise you might get the following error:
+--     --
+--     --    Error on launch: Failed to attach to the target process
+--     --
+--     -- But you should be aware of the implications:
+--     -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+--     runInTerminal = false,
+--   },
+-- }
+--
+-- -- If you want to use this for Rust and C, add something like this:
+--
+-- dap.configurations.c = dap.configurations.cpp
 }
